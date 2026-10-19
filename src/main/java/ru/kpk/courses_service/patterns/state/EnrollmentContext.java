@@ -18,8 +18,8 @@ public class EnrollmentContext {
         return currentState.getStatusName();
     }
 
-    void pay() { currentState.pay(this); };
-    void approve() { currentState.approve(this); }
-    void reject() { currentState.reject(this); }
-    void complete() { currentState.complete(this); }
+    public void pay() { currentState.pay(this); };
+    public void approve() { currentState.approve(this); }
+    public void reject() { currentState.reject(this); }
+    public void complete() { currentState.complete(this); }
 }

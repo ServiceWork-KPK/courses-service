@@ -20,11 +20,11 @@ public class ActiveState implements EnrollmentState {
     @Override
     public void complete(EnrollmentContext context) {
         System.out.println("Курс успешно завершён!");
+        context.setCurrentState(new CompletedState());
     }
 
     @Override
     public String getStatusName() {
         return "ACTIVE";
     }
-
 }
