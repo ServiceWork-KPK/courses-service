@@ -1,5 +1,8 @@
 package ru.kpk.courses_service.patterns.state;
 
+import org.springframework.context.ApplicationEventPublisher;
+import ru.kpk.courses_service.patterns.observer.CourseCompletedEvent;
+
 public class ActiveState implements EnrollmentState {
 
     @Override
@@ -18,9 +21,11 @@ public class ActiveState implements EnrollmentState {
     }
 
     @Override
-    public void complete(EnrollmentContext context) {
+    public void complete(EnrollmentContext context, ApplicationEventPublisher eventPublisher) {
         System.out.println("Курс успешно завершён!");
         context.setCurrentState(new CompletedState());
+
+        eventPublisher.publishEvent(new CourseCompletedEvent("Иванов Иван", "Java-разработчик"));
     }
 
     @Override

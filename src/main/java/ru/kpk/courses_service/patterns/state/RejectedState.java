@@ -1,5 +1,7 @@
 package ru.kpk.courses_service.patterns.state;
 
+import org.springframework.context.ApplicationEventPublisher;
+
 public class RejectedState implements EnrollmentState {
 
     @Override
@@ -18,7 +20,7 @@ public class RejectedState implements EnrollmentState {
     }
 
     @Override
-    public void complete(EnrollmentContext context) {
+    public void complete(EnrollmentContext context, ApplicationEventPublisher eventPublisher) {
         System.out.println("Ошибка: заявка отклонена.");
     }
 

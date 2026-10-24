@@ -1,5 +1,7 @@
 package ru.kpk.courses_service.patterns.state;
 
+import org.springframework.context.ApplicationEventPublisher;
+
 public class PendingPaymentState implements EnrollmentState {
 
     @Override
@@ -20,7 +22,7 @@ public class PendingPaymentState implements EnrollmentState {
     }
 
     @Override
-    public void complete(EnrollmentContext context) {
+    public void complete(EnrollmentContext context, ApplicationEventPublisher eventPublisher) {
         System.out.println("Ошибка: нельзя завершить неоплаченный курс.");
     }
 

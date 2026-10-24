@@ -1,16 +1,22 @@
 package ru.kpk.courses_service.controller;
 
+import org.springframework.context.ApplicationEventPublisher;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 import ru.kpk.courses_service.patterns.state.EnrollmentContext;
 
 @RestController
 public class EnrollmentController {
+    private final ApplicationEventPublisher eventPublisher;
+
+    public EnrollmentController(ApplicationEventPublisher eventPublisher) {
+        this.eventPublisher = eventPublisher;
+    }
 
     // Успешное прохождение курса
     @GetMapping("/test_state_success")
     public String testState1() {
-        EnrollmentContext enrollment = new EnrollmentContext();
+        EnrollmentContext enrollment = new EnrollmentContext(eventPublisher);
         StringBuilder result = new StringBuilder();
 
         result.append("1. Создана запись. Статус: ").
@@ -47,7 +53,7 @@ public class EnrollmentController {
     // Отклонённая заявка на курс
     @GetMapping("/test_state_reject")
     public String testState2() {
-        EnrollmentContext enrollment = new EnrollmentContext();
+        EnrollmentContext enrollment = new EnrollmentContext(eventPublisher);
         StringBuilder result = new StringBuilder();
 
         result.append("1. Создана запись. Статус: ").
