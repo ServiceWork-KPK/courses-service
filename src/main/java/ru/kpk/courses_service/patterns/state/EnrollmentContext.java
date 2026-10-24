@@ -4,7 +4,7 @@ import org.springframework.context.ApplicationEventPublisher;
 
 public class EnrollmentContext {
     private EnrollmentState currentState; // Текущий статус
-    private final ApplicationEventPublisher eventPublisher;
+    private final ApplicationEventPublisher eventPublisher; // Для отправки событий
 
     // Новая запись по умолчанию ждёт оплату
     public EnrollmentContext(ApplicationEventPublisher eventPublisher) {
@@ -22,7 +22,7 @@ public class EnrollmentContext {
         return currentState.getStatusName();
     }
 
-    public void pay() { currentState.pay(this); };
+    public void pay() { currentState.pay(this); }
     public void approve() { currentState.approve(this); }
     public void reject() { currentState.reject(this); }
     public void complete() { currentState.complete(this, this.eventPublisher); }
